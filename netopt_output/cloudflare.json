@@ -1,0 +1,59 @@
+{
+  "_comment": "=== Cloudflare 优化设置 (Dashboard → Speed → Optimization) ===",
+  "speed_optimizations": {
+    "auto_minify": {
+      "html": true,
+      "css": true,
+      "js": true
+    },
+    "brotli": true,
+    "rocket_loader": true,
+    "early_hints": true,
+    "http2": true,
+    "http3": true,
+    "0rtt": true,
+    "polish": "lossless",
+    "mirage": true,
+    "cache_level": "standard"
+  },
+  "_comment_caching": "=== 缓存规则 (Dashboard → Caching → Cache Rules) ===",
+  "cache_rules": [
+    {
+      "description": "静态资源 1 年缓存",
+      "expression": "(http.request.uri.path ~ \".*\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff2)$\")",
+      "action": "set_cache_level",
+      "value": "cache_everything",
+      "edge_ttl": {
+        "mode": "override_origin",
+        "value": 31536000
+      },
+      "browser_ttl": {
+        "mode": "override_origin",
+        "value": 31536000
+      }
+    },
+    {
+      "description": "HTML 文件 1 小时缓存",
+      "expression": "(http.request.uri.path ~ \".*\\.html$\")",
+      "action": "set_cache_level",
+      "value": "cache_everything",
+      "edge_ttl": {"mode": "override_origin", "value": 3600},
+      "browser_ttl": {"mode": "respect_existing_headers", "value": 3600}
+    }
+  ],
+  "_comment_security": "=== TLS 设置 (Dashboard → SSL/TLS → Edge Certificates) ===",
+  "tls_settings": {
+    "min_tls_version": "1.2",
+    "tls_1_3": true,
+    "http_strict_transport_security": {
+      "enabled": true,
+      "max_age": 31536000,
+      "include_subdomains": true,
+      "preload": true
+    }
+  },
+  "_comment_ddos": "=== 安全设置 ===",
+  "security_level": "medium",
+  "browser_integrity_check": true,
+  "always_online": true
+}

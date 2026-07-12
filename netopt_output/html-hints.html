@@ -1,0 +1,23 @@
+<!-- ============================================================
+自动生成: 网络延迟优化 — HTML Resource Hints
+使用方法: 将此片段加入 HTML <head> 中
+============================================================ -->
+
+<!-- DNS 预解析 — 提前解析关键第三方域名 -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//api.yourdomain.com">
+
+<!-- Preconnect — 提前建立完整连接 (DNS + TCP + TLS) -->
+<link rel="preconnect" href="https://api.yourdomain.com">
+<link rel="preconnect" href="https://cdn.yourdomain.com">
+
+<!-- Preload — 提前加载首屏关键资源 -->
+<link rel="preload" href="/fonts/main.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/css/critical.css" as="style">
+
+<!-- 图片懒加载 -->
+<img src="placeholder.jpg" loading="lazy" alt="...">
+
+<!-- 脚本异步加载 -->
+<script src="/js/non-critical.js" defer></script>

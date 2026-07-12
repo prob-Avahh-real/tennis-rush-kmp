@@ -1,0 +1,33 @@
+# detekt configuration file
+config:
+  validation: true
+  warningsAsErrors: false
+  excludes: ['**/build/**', '**/test/**', '**/androidMain/**', '**/iosMain/**']
+
+style:
+  MagicNumber:
+    active: false
+  UnusedPrivateMember:
+    active: true
+  WildcardImport:
+    active: false
+
+complexity:
+  LongParameterList:
+    active: true
+    threshold: 8
+  ComplexCondition:
+    active: true
+    threshold: 4
+
+potential-bugs:
+  DuplicateCaseInWhenExpression:
+    active: true
+  UnreachableCode:
+    active: true
+  MissingWhenCase:
+    active: true
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
