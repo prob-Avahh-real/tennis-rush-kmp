@@ -4,7 +4,6 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.encoding.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -15,7 +14,6 @@ class TennisRushHttpClient private constructor() {
 
     val client = HttpClient {
         install(ContentNegotiation) { json(this@TennisRushHttpClient.json) }
-        install(ContentEncoding) { gzip(); deflate() }
         defaultRequest { url("https://api.tennisrush.example.com/v1/"); contentType(ContentType.Application.Json) }
         install(HttpTimeout) { requestTimeoutMillis = 15_000; connectTimeoutMillis = 10_000; socketTimeoutMillis = 15_000 }
         install(HttpRequestRetry) { retryOnServerErrors(maxRetries = 2); retryOnException(maxRetries = 3); exponentialDelay() }
